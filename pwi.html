@@ -1,0 +1,111 @@
+
+
+
+
+
+<html>
+    <head>
+        <title>SASTRA University - Parent Web Interface</title>
+        <link href='images/sastra120120.jpg' type='Image/x-icon' rel='icon'/> 
+        <link type="text/css" href="resource/css/jquery-ui-1.8.15.custom.css" rel="stylesheet"/>
+        <script type="text/javascript" src="resource/js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="resource/js/jquery-ui-1.8.15.custom.min.js"></script>        
+
+        <script type="text/javascript">
+            function submitData(){ 
+                $('#txtPA').val('0');
+                var ans = $.trim($("#answer").val());
+                if (ans.length != 5){
+                    alert('Invalid captcha!');
+                    $('#answer').focus();
+                    return false;
+                }   
+                ans = $('#txtRegNumber').val().length;
+                if (ans < 9 || ans > 10){
+                    alert("Invalid register number!");
+                    $('#txtRegNumber').focus();
+                    return false;
+                }
+                ans = $('#txtPwd').val().length;
+                if (ans != 8){
+                    alert("Invalid password!");
+                    $('#txtPwd').focus();
+                    return false;
+                }
+                $('#txtPA').val('1');
+                $("#frmLogin").submit();
+            }
+        </script>
+    </head>
+    <body style="margin: 0px">
+        <form id="frmLogin" method="post">
+            <table style="width: 50%;margin-left: auto;margin-right: auto;">
+                <tr class="ui-widget-header">
+                    <td width="100px" align="center"><img src="images/sastra120120.jpg" style="width: 100px; height:100px"/></td>
+                    <td height="30px" align="center"><font size="6"><b>SASTRA UNIVERSITY</b></font><br><font color="#ffffff"><b>Tirumalaisamudram, Thanjavur - 613401</b></font></td>
+                    <td width="100px" align="center"><img src="images/sastrasilver120120.jpg" style="width: 100px; height:100px"/></td>
+                </tr>
+                <tr> 
+                    <td colspan="3">
+                        <div class="ui-state-focus">PARENT WEB INTERFACE</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <table class="ui-widget-content" style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" class="ui-state-default">Parent Login</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top" width="50%" style="text-align: right">Register Number&nbsp;</td>
+                                    <td width="50%" align="left">
+                                        <input name="txtRegNumber" id="txtRegNumber" maxlength="9" size="20"></td>
+                                </tr>
+                                <tr>  
+                                    <td align="left" valign="top" width="50%" style="text-align: right">Password&nbsp;</td>
+                                    <td width="40%" align="left">
+                                        <input name="txtPwd" id="txtPwd" maxlength="8" size="20" tabindex="0" type="password">
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td title="Click Ctrl+R if you can't able to see captach image" style="text-align: right">Captcha image</td>
+                                    <td style="vertical-align: middle;cursor: pointer">
+                                        <img id="imgCaptcha" src="stickyImg" alt="Click here to load captcha image" onclick="this.src='stickyImg?1'"/>
+                                    </td>
+                                </tr>                                         
+                                <tr>
+                                    <td title="Click Ctrl+R if you can't able to see captach image" style="text-align: right">Type captcha text:</td>
+                                    <td style="vertical-align: middle">
+                                        <input id="answer" name="answer"/>
+                                    </td>
+                                </tr> 
+                                
+                                <tr>
+                                    <td colspan='2' align=center>
+                                        <input type="button" value="SUBMIT" onclick="submitData()">
+                                        <input type="button" value="REFRESH" onclick="location.href = location.href;">
+                                    </td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="ui-widget-content">Log on with your wards "Date Of Birth" as password. [Date Format ddmmyyyy E.g. 03121990]</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>               
+            <input type="hidden" id="txtPA" name="txtPA" value="0">
+        </form>
+        <script type="text/javascript">
+            setTimeout(funLoadCImg, 1000);
+            function funLoadCImg(){
+                var d = new Date();                
+                $('#imgCaptcha').attr('src', 'stickyImg?ms='+d.getMilliseconds());                             
+            }
+        </script>
+    </body>
+</html>
